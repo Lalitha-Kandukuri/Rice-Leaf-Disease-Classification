@@ -1,77 +1,61 @@
-🌾 Rice Leaf Disease Classification
+# 🌾 Rice Leaf Disease Classification  
 
-Rice is one of the most important staple foods in the world, especially in low- and middle-income countries. Detecting rice leaf diseases early helps farmers reduce crop loss and improve yield.
+Rice is one of the most important staple foods in the world, especially in low- and middle-income countries. Detecting rice leaf diseases early helps farmers reduce crop loss and improve yield.  
 
-This project classifies rice leaf diseases into three categories:
+This project classifies rice leaf diseases into three categories:  
+- 🍂 **Leaf Smut**  
+- 🍃 **Brown Spot**  
+- 🌱 **Bacterial Leaf Blight**  
 
-🍂 Leaf Smut
+---
 
-🍃 Brown Spot
+## 📂 Dataset  
+- Total: **120 images** (JPG format)  
+- Classes: **3** (40 images each)  
+- Classes split into **Train (75%)** and **Test (25%)**  
 
-🌱 Bacterial Leaf Blight
+---
 
-📂 Dataset
+## ⚙️ Tech Stack  
+- **Python, TensorFlow, Keras**  
+- **MobileNetV2** (Pretrained Model with Transfer Learning)  
+- **OpenCV, Matplotlib, NumPy, Pandas**  
 
-Total: 120 images (JPG format)
+---
 
-Classes: 3 (40 images each)
+## 🛠️ Steps Followed  
 
-Classes split into Train (75%) and Test (25%)
+### 1️⃣ Data Preparation  
+- Unzipped dataset and organized into folders  
+- Split into train (75%) and test (25%) sets  
 
-⚙️ Tech Stack
+### 2️⃣ Data Augmentation  
+- Applied rotation, zoom, shear, shift, and flip using `ImageDataGenerator`  
+- Normalized images (`rescale=1/255`)  
 
-Python, TensorFlow, Keras
+### 3️⃣ Model Building  
+- Used **MobileNetV2** as base model (transfer learning)  
+- Added `GlobalAveragePooling2D`, `Dropout (0.5)`, and `Dense Softmax` layer (3 outputs)  
 
-MobileNetV2 (Pretrained Model with Transfer Learning)
+### 4️⃣ Compilation & Training  
+- Loss: **Categorical Crossentropy**  
+- Optimizer: **Adam (1e-4)**  
+- Metric: **Accuracy**  
+- Added **callback** to stop training after 98% accuracy  
 
-OpenCV, Matplotlib, NumPy, Pandas
+### 5️⃣ Model Saving  
+- Saved model as `model.h5`  
+- Exported weights as `my_model_weights.h5`  
 
-🛠️ Steps Followed
+### 6️⃣ Testing & Evaluation  
+- Loaded trained model  
+- Tested with unseen images  
+- ✅ Correctly predicted rice leaf disease class  
 
-1️⃣ Data Preparation
+---
 
-Unzipped dataset and organized into folders
+## 📊 Results  
+- Achieved **high accuracy** on training & testing datasets  
+- Successfully identified rice leaf diseases on new images  
 
-Split into train (75%) and test (25%) sets
-
-2️⃣ Data Augmentation
-
-Applied rotation, zoom, shear, shift, and flip using ImageDataGenerator
-
-Normalized images (rescale=1/255)
-
-3️⃣ Model Building
-
-Used MobileNetV2 as base model (transfer learning)
-
-Added GlobalAveragePooling2D, Dropout (0.5), and Dense Softmax layer (3 outputs)
-
-4️⃣ Compilation & Training
-
-Loss: Categorical Crossentropy
-
-Optimizer: Adam (1e-4)
-
-Metric: Accuracy
-
-Added callback to stop training after 98% accuracy
-
-5️⃣ Model Saving
-
-Saved model as model.h5
-
-Exported weights as my_model_weights.h5
-
-6️⃣ Testing & Evaluation
-
-Loaded trained model
-
-Tested with unseen images
-
-✅ Correctly predicted rice leaf disease class
-
-📊 Results
-
-Achieved high accuracy on training & testing datasets
-
-Successfully identified rice leaf diseases on new images
+---
